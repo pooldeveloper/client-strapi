@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strapi</title>
+</head>
+
+<body>
+    <h1 id="title"></h1>
+    <p id="text"></p>
+    <script>
+        const titles = document.querySelector('#title')
+        const text = document.querySelector('#text')
+
+        document.addEventListener('DOMContentLoaded', () => {
+            consultAPI();
+        })
+
+        const consultAPI = async () =>{
+            const api = await fetch('http://localhost:1337/homes');
+            const home = await api.json();
+            const{title, description} = home[0]
+            showHTML(title, description);
+        }
+        function showHTML(title, description){
+            titles.textContent = title;
+            text.textContent = description;
+        }
+
+    </script>
+</body>
+
+</html>
