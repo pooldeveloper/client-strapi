@@ -20,7 +20,7 @@
         })
 
         const consultAPI = async () =>{
-            const api = await fetch('http://localhost:1337/homes');
+            const api = await fetch('https://nameless-mountain-11604.herokuapp.com/homes');
             const home = await api.json();
             const{title, description} = home[0]
             showHTML(title, description);
