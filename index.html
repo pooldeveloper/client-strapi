@@ -11,23 +11,27 @@
 <body>
     <h1 id="title"></h1>
     <p id="text"></p>
+    <img id="img" src="" alt="">
     <script>
         const titles = document.querySelector('#title')
         const text = document.querySelector('#text')
+        const img = document.querySelector('#img')
 
         document.addEventListener('DOMContentLoaded', () => {
             consultAPI();
         })
 
         const consultAPI = async () =>{
-            const api = await fetch('https://nameless-mountain-11604.herokuapp.com/homes');
+            const api = await fetch('https://my-app-strapi-08.herokuapp.com/homes');
             const home = await api.json();
-            const{title, description} = home[0]
-            showHTML(title, description);
+            const{title, description} = home[0];
+            const image = `https://my-app-strapi-08.herokuapp.com${home[0].images.url}`;
+            showHTML(title, description, image);
         }
-        function showHTML(title, description){
+        function showHTML(title, description, image){
             titles.textContent = title;
             text.textContent = description;
+            img.src= image;
         }
 
     </script>
